@@ -74,11 +74,43 @@ id_konsumenta INT, FOREIGN KEY(id_konsumenta) REFERENCES postac(id_postac))
 ;
 
 
-INSERT INTO przetwory VALUES('1955','bigos','papryczka chilli');
+INSERT INTO przetwory VALUES(1, DEFAULT, 1, 'bigos', DEFAULT, 3);
 
 
+****Zad 5
 
+INSERT INTO postac VALUES(DEFAULT,'Ragnar','wiking','1941-01-01','79');
+INSERT INTO postac VALUES(DEFAULT,'Floki','wiking','1944-01-05','76');
+INSERT INTO postac VALUES(DEFAULT,'Ubbe','wiking','1954-01-10','66');
+INSERT INTO postac VALUES(DEFAULT,'Ivar','wiking','1960-01-25','60');
+INSERT INTO postac VALUES(DEFAULT,'Hvitserk','wiking','1966-01-27','54');
 
+CREATE TABLE statek(nazwa_statku VARCHAR(50) PRIMARY KEY, rodzaj_statku ENUM('slup','drakkar'), data_wodowania DATE, max_ladownosc INT UNSIGNED);
+
+INSERT INTO statek VALUES('Knara','drakkar','2000-10-01','1000');
+INSERT INTO statek VALUES('Sneka','slup','1999-01-01','100');
+
+ALTER TABLE postac ADD COLUMN funkcja VARCHAR(60);
+
+UPDATE postac
+SET funkcja='kapitan' 
+WHERE id_postac='1';
+
+SELECT * FROM postac;
+
+ALTER TABLE postac ADD COLUMN statek VARCHAR(100);
+ALTER TABLE postac ADD FOREIGN KEY postac(statek) REFERENCES statek(nazwa_statku);
+
+UPDATE postac SET statek='Knara' WHERE nazwa='Bjorn';
+UPDATE postac SET statek='Knara' WHERE nazwa='Drozd';
+UPDATE postac SET statek='Knara' WHERE nazwa='Ragnar';
+UPDATE postac SET statek='Knara' WHERE nazwa='Floki';
+UPDATE postac SET statek='Sneka' WHERE nazwa='Ivar';
+UPDATE postac SET statek='Sneka' WHERE nazwa='Ubbe';
+UPDATE postac SET statek='Sneka' WHERE nazwa='Hvitserk';
+
+DELETE FROM izba WHERE nazwa_izby='spizarnia';
+DROP TABLE izba;
 
 
 
