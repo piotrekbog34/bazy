@@ -1,0 +1,5 @@
+use boguszp;
+show databases;
+
+****Zad 1
+
