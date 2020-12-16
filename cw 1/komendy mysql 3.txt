@@ -1,5 +1,61 @@
 use boguszp;
 show databases;
+show tables;
 
 ****Zad 1
+
+create table kreatura select *from wikingowie.kreatura;
+create table zasob select *from wikingowie.zasob;
+create table ekwipunek select *from wikingowie.ekwipunek;
+
+select*from zasob;
+
+select*from zasob where rodzaj='jedzenie';
+
+select nazwa from zasob where idZasobu ='1';
+select nazwa from zasob where idZasobu ='3';
+select nazwa from zasob where idZasobu ='6';
+
+
+****Zad 2
+
+select*from kreatura;
+select nazwa from kreatura where rodzaj !='wiedzma' and udzwig>=50;
+
+select nazwa from zasob where waga between 2 and 5;
+
+select nazwa from kreatura where nazwa like '%or%' and waga between 30 and 70;
+
+****Zad 3
+select nazwa from zasob where month(dataPozyskania)=7 or month(dataPozyskania)=8;
+
+select nazwa from zasob where rodzaj is not null order by waga asc;
+
+select nazwa from kreatura order by dataUr limit 5;
+
+****Zad 4
+
+select distinct rodzaj from zasob;
+
+select concat(nazwa," ", rodzaj) as cosik from postac where nazwa like 'wi%';
+
+select nazwa , waga*ilosc as waga from zasob where year(dataPozyskania) between 2000 and 2007;
+
+****Zad 5
+
+select nazwa from zasob where rodzaj is NULL;
+
+select nazwa,waga*0.7 as waga_jedzenia,waga*0.3 as waga_odpadu from zasob where rodzaj='jedzenie';
+
+select distinct rodzaj from zasob where nazwa like 'Ba%' or nazwa like '%os' order by rodzaj;
+
+
+
+
+
+
+
+
+
+
 
