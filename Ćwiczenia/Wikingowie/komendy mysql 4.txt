@@ -1,0 +1,53 @@
+use boguszp;
+show databases;
+show tables;
+SELECT * FROM postac;
+
+kreatura.nazwa
+kreatura.idKreatury
+ekwipunek.idKreatury
+ekwipunek.idZasobu
+
+****Zad 1
+select AVG(waga) AS 'srednia waga' FROM kreatura WHERE rodzaj='wiking';
+
+select rodzaj,AVG(waga) AS 'srednia waga',COUNT(nazwa) AS 'liczba' FROM kreatura GROUP BY rodzaj;
+
+select AVG(2020-YEAR(dataUr)) FROM kreatura;
+
+****Zad 2
+select rodzaj,SUM(waga*ilosc) AS 'suma wag' FROM zasob GROUP BY rodzaj;
+
+select nazwa,AVG(waga*ilosc) AS 'srednia waga' FROM zasob WHERE ilosc>=4 AND waga*ilosc>1 GROUP BY nazwa;
+
+select rodzaj,COUNT(DISTINCT nazwa) FROM zasob WHERE ilosc>1 GROUP BY rodzaj;
+
+****Zad 3
+select kreatura.nazwa, ekwipunek.ilosc FROM kreatura JOIN ekwipunek ON kreatura.idKreatury = ekwipunek.idKreatury;
+
+select kreatura.nazwa, zasob.nazwa FROM kreatura INNER JOIN ekwipunek ON kreatura.idKreatury = ekwipunek.idKreatury INNER JOIN zasob ON ekwipunek.idZasobu = zasob.idZasobu ORDER BY kreatura.nazwa;
+
+select kreatura.nazwa FROM kreatura LEFT JOIN ekwipunek ON kreatura.idKreatury = ekwipunek.idKreatury WHERE ekwipunek.idZasobu IS NULL;
+
+****Zad 4
+select kreatura.nazwa, zasob.nazwa FROM kreatura INNER JOIN ekwipunek ON kreatura.idKreatury = ekwipunek.idKreatury INNER JOIN zasob ON ekwipunek.idZasobu = zasob.idZasobu WHERE YEAR(dataUr)>1670 AND YEAR(dataUr)<1680 ORDER BY kreatura.nazwa;
+
+select kreatura.nazwa FROM kreatura INNER JOIN ekwipunek ON kreatura.idKreatury = ekwipunek.idKreatury INNER JOIN zasob ON ekwipunek.idZasobu = zasob.idZasobu WHERE zasob.rodzaj='jedzenie' ORDER BY kreatura.dataUr DESC LIMIT 5;
+
+select T1.nazwa,T2.nazwa FROM kreatura T1, kreatura T2
+ WHERE T1.idKreatury+5=T2.idKreatury;
+
+
+****Zad 5
+select kreatura.rodzaj, AVG(zasob.waga*ekwipunek.ilosc) FROM kreatura INNER JOIN ekwipunek ON kreatura.idKreatury = ekwipunek.idKreatury INNER JOIN zasob ON ekwipunek.idZasobu = zasob.idZasobu WHERE kreatura.rodzaj<>'malpa' AND kreatura.rodzaj<>'waz' AND ekwipunek.ilosc<30 GROUP BY kreatura.rodzaj;
+
+
+
+
+
+
+
+
+
+
+
